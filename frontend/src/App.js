@@ -2,6 +2,9 @@ import React from "react";
 import Login from "./Login"
 import CreateAccount from "./CreateAccount"
 import VideoDisplay from "./VideoDisplay"
+import Teams from "./Teams"
+import TeamDisplay from "./TeamDisplay"
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +18,8 @@ const App = (
         <Route path="/Login" component={Login} />
         <Route path="/CreateAccount" component={CreateAccount} />
         <Route path="/Home" component={VideoDisplay} />
+        <Route exact path="/Teams" component={Teams} />
+        <Route path="/Teams/:team" component={TeamDisplay} />
       </Switch>
 
   </Router>
