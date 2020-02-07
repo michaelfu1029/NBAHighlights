@@ -1,0 +1,22 @@
+
+.container {
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-basis: 100%; */
+    /* flex: 1; */
+    background-color: rebeccapurple;
+    justify-content: center;
+  }
+  .inner {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 60%;
+    /* flex: 1; */
+    background-color: red;
+    /* justify-content: center; */
+  }
+.sidebar { 
+    /* width: 190px;  */
+    position: fixed; 
+    margin-left: 53%; 
+  }

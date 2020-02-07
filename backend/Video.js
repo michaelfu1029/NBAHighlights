@@ -30,18 +30,18 @@ class Video {
             data.items.forEach(item => {
                 const title = item.snippet.title;
                 if (title.includes("FULL GAME HIGHLIGHTS")){
-                    const f = "full game highlights";
-                    console.log(title.includes(f.toUpperCase()));
+                    // const f = "full game highlights";
+                    // console.log(title.includes(f.toUpperCase()));
                     const dateIndex = title.search("(?<=\| )[^\|]*$");
-                    console.log(title.slice(dateIndex));
+                    // console.log(title.slice(dateIndex));
                     const date = new Date(title.slice(dateIndex))
                     videos.push({"title": item.snippet.title, "videoId": item.id.videoId, "date": date});
                 }
             });
             videos.forEach(item => {
-                Videos.create(item); 
+                Videos.create(item); //update
             });
-            Videos.find();
+            // Videos.find();
             
         },(err) => {
             console.error(err);
@@ -57,6 +57,7 @@ class Video {
         const videos = await Videos.find({}).sort({date: -1});
         const ret = [];
         videos.map((video) => {
+            // if (video.title.includes(`/\b${teamName.toUpperCase()}\b/gi`)) {
             if (video.title.includes(teamName.toUpperCase())) {
                 ret.push(video);
             }
