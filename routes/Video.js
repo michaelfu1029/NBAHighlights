@@ -2,7 +2,7 @@ const { YoutubeDataAPI } = require("youtube-v3-api");
 
 const Videos = require('../schema/video');
 const Response = require('../types/Response');
-const { API_KEY } = require("../credentials");
+// const { API_KEY } = require("../credentials");
 
 class Video {
     constructor(app) {
@@ -21,7 +21,7 @@ class Video {
 
     searchYoutube = () => {
         let q = "full game highlights";
-        const api = new YoutubeDataAPI(API_KEY);
+        const api = new YoutubeDataAPI(process.env.API_KEY);
         let videos = [];
  
         api.searchAll(q, 50, {
@@ -31,19 +31,16 @@ class Video {
             data.items.forEach(item => {
                 const title = item.snippet.title;
                 if (title.includes("FULL GAME HIGHLIGHTS")){
-                    // const f = "full game highlights";
-                    // console.log(title.includes(f.toUpperCase()));
                     const dateIndex = title.search("(?<=\| )[^\|]*$");
-                    // console.log(title.slice(dateIndex));
                     const date = new Date(title.slice(dateIndex))
                     videos.push({"title": item.snippet.title, "videoId": item.id.videoId, "date": date});
                 }
             });
-            videos.forEach(item => {
-                Videos.create(item); //update
+            console.log("Searching...");
+            videos.forEach(async item => {
+                await Videos.updateOne({"videoId": item.videoId}, item, {upsert: true});
             });
-            // Videos.find();
-            
+            console.log("Done!");
         },(err) => {
             console.error(err);
         })
