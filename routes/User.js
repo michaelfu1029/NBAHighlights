@@ -1,5 +1,5 @@
-const Users = require('./Schema/user');
-const Response = require('./Types/Response')
+const Users = require('../schema/user');
+const Response = require('../types/Response')
 
 class User {
     constructor(app) {

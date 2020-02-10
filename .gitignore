@@ -1,6 +1,6 @@
 package-lock.json
-backend/credentials.js
-frontend/src/Constants.js
+credentials.js
+.DS_Store
 # Logs
 logs
 *.log

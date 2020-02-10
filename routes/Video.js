@@ -1,7 +1,8 @@
-const Videos = require('./Schema/video');
-const Response = require('./Types/Response');
 const { YoutubeDataAPI } = require("youtube-v3-api");
-const { API_KEY } = require("./credentials");
+
+const Videos = require('../schema/video');
+const Response = require('../types/Response');
+const { API_KEY } = require("../credentials");
 
 class Video {
     constructor(app) {
