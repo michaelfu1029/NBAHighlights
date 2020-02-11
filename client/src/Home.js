@@ -23,8 +23,8 @@ class Home extends Component {
                 this.setState({loggedOut: true});
                 return
             }
-            console.log(`${ip_address}user/${userId}`);
-            const response = await axios.get(`${ip_address}user/${userId}`);
+            console.log(`/user/${userId}`);
+            const response = await axios.get(`/user/${userId}`);
             console.log(response);
             this.setState({username: response.data.data});
         } catch (e) {
@@ -34,7 +34,7 @@ class Home extends Component {
 
     getVideos = async () => {
         try {
-            const response = await axios.get(`${ip_address}video`);
+            const response = await axios.get(`/video`);
             this.setState({videos: response.data.data});
         } catch (e) {
             console.log("Error getting videos");

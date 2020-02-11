@@ -21,7 +21,7 @@ import { useHistory, Link, NavLink } from 'react-router-dom';
 
 //   const getTeamVideos = async (team) => {
 //     try {
-//         const response = await axios.get(`${ip_address}video/${team}`);
+//         const response = await axios.get(`/video/${team}`);
 //         setTeamVideosState(response.data.data);
 //     } catch (e) {
 //         console.log("Could not find videos in database");
@@ -49,7 +49,7 @@ class TeamPage extends Component {
 
     getTeamVideos = async (team) => {
         try {
-            const response = await axios.get(`${ip_address}video/${team}`);
+            const response = await axios.get(`/video/${team}`);
             this.setState({teamVideos: response.data.data});
         } catch (e) {
             console.log("Could not find videos in database");

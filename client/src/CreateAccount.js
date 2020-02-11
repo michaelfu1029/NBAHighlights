@@ -15,7 +15,7 @@ class CreateAccount extends Component {
 
   createAccount = async () => {
     try {
-      await axios.post(`${ip_address}user`, {
+      await axios.post(`/user`, {
         credentials: {
           username: this.state.username,
           password: this.state.password
