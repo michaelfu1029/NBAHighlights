@@ -1,4 +1,5 @@
 const { YoutubeDataAPI } = require("youtube-v3-api");
+var schedule = require('node-schedule');
 
 const Videos = require('../schema/video');
 const Response = require('../types/Response');
@@ -17,6 +18,9 @@ class Video {
         });
 
         this.searchYoutube();
+        schedule.scheduleJob('0 * * * *', () => {
+            this.searchYoutube()
+        });
     }
 
     searchYoutube = () => {
