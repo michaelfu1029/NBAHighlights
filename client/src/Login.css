@@ -1,5 +1,20 @@
+.login-container {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+} 
 .flexbox-container {
     display: flex;
     flex-direction: row;
     padding: 10px;
+    /* background-color: sandybrown; */
+
+    justify-content: center;
 }
+.inputs {
+    padding: 10px;
+    /* background-color: black; */
+    text-align: center;
+}
+

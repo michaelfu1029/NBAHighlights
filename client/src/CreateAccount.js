@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { ip_address } from './Constants';
 import {Redirect} from 'react-router-dom';
+import Entry from './Entry';
 
 class CreateAccount extends Component {
   state = {
-    username: "",
-    password: "",
     accountMade: false,
-    emptyUsername: false,
-    emptyPassword: false,
   };
 
-  createAccount = async () => {
+  createAccount = async (username, password) => {
     try {
       await axios.post(`/user`, {
         credentials: {
-          username: this.state.username,
-          password: this.state.password
+          username,
+          password
         }
       });
       this.setState({accountMade: true});
@@ -26,11 +21,9 @@ class CreateAccount extends Component {
       const response = e.response.data;
       if (response.data) {
         if (response.data.username) {
-          this.setState({ emptyUsername: true});
           console.log("Empty Username Field")
         }
         if (response.data.password) {
-          this.setState({ emptyPassword: true});
           console.log("Empty Password Field")
         }
       } else {
@@ -40,42 +33,13 @@ class CreateAccount extends Component {
   }
 
   render() {
-    const { emptyUsername, emptyPassword, accountMade } = this.state;
+    const { accountMade } = this.state;
     if (accountMade) {
       return  <Redirect  to="/Login" />
     }
     return (
-      <div>
-        <h1>Create An Account</h1>
-        <div>
-          <div className="flexbox-container">
-            <input 
-              type="text"
-              onChange={(e) => this.setState({ username: e.target.value, emptyUsername: false })}
-              placeholder="Username"
-            />
-            <div>{emptyUsername ? "Cannot be blank": ""} </div>
-          </div>
-          <div className="flexbox-container">
-            <input
-              type="text"
-              onChange={(e) => this.setState({ password: e.target.value, emptyPassword: false })}
-              placeholder="Password"
-            />
-            <div>{emptyPassword ? "Cannot be blank": ""} </div>
-          </div>
-          <div style={{ padding: '10px' }}>
-            <button
-              onClick={() =>
-                this.createAccount()
-              }
-            >
-              Sign Up
-            </button>
-            <Link to="/Login">Login</Link>
-          </div>
-        </div>
-      </div>
+      <Entry title="Create Account" buttonPress={this.createAccount} linkUrl="/Login" linkTitle="Login" />
+
     );
   }
 }

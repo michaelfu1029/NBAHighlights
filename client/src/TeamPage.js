@@ -5,6 +5,7 @@ import axios from 'axios';
 import {ip_address, teamList} from './Constants'
 import VideoDisplay from './VideoDisplay'
 import { useHistory, Link, NavLink } from 'react-router-dom';
+import './VideoDisplay.css'
 
 
 
@@ -64,6 +65,7 @@ class TeamPage extends Component {
             this.getTeamVideos(page);
         }
         return (
+            // <div style="text-align: center;">
             <div>
                 {/* <NavLink style={{ textDecoration: 'none'  }} to='/Home'>{team}</NavLink> */}
                 {/* <button onClick={()=>}>{team}</button> */}

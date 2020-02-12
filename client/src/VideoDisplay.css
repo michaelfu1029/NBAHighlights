@@ -4,19 +4,29 @@
     /* flex-direction: row; */
     /* flex-basis: 100%; */
     /* flex: 1; */
-    background-color: rebeccapurple;
+    background-color: lightblue;
     justify-content: center;
   }
   .inner {
     display: flex;
-    flex-direction: row;
-    flex-basis: 60%;
+    /* flex-direction: row; */
+    /* flex-basis: 60%; */
     /* flex: 1; */
     background-color: red;
-    /* justify-content: center; */
+    /* width: 300px; */
+    justify-content: center;
   }
 .sidebar { 
     /* width: 190px;  */
     position: fixed; 
-    margin-left: 53%; 
+    margin-left: 0px; 
+    background-color: rosybrown;
   }
+.video {
+  background-color: white;
+  text-align: center;
+}
+
+h1 {
+  text-align:center;
+}

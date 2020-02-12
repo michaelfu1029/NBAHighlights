@@ -1,43 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ip_address } from './Constants';
-import { Link } from 'react-router-dom';
-import './Login.css';
+import Entry from './Entry';
 
 import {Redirect} from 'react-router-dom';
 
 class Login extends Component {
   state = {
-    username: "",
-    password: "",
-    emptyUsername: false,
-    emptyPassword: false,
     loggedIn: false,
   };
 
-  login = async () => {
+  login = async (username, password) => {
     try {
       const result = await axios.post(`/user/login`, {
         credentials: {
-          username: this.state.username,
-          password: this.state.password
+          username,
+          password
         }
-      // },
-      // {
-      //   withCredentials: true
       });
-      global.userId = result.data.data;
-      // console.log(result.data.data);
+      // global.userId = result.data.data;
       this.setState({loggedIn: true});
     } catch (e) {
       const response = e.response.data;
       if (response.data) {
         if (response.data.username) {
-          this.setState({ emptyUsername: true});
           console.log("Empty Username Field")
         }
         if (response.data.password) {
-          this.setState({ emptyPassword: true});
           console.log("Empty Password Field")
         }
       } else {
@@ -47,42 +35,12 @@ class Login extends Component {
   }
 
   render() {
-    const { emptyUsername, emptyPassword, loggedIn } = this.state;
+    const { loggedIn } = this.state;
     if (loggedIn) {
       return  <Redirect  to="/Home" userId="asdf"/>
     }
     return (
-      <div>
-        <h1>Sign In</h1>
-        <div>
-          <div className="flexbox-container">
-            <input 
-              type="text"
-              onChange={(e) => this.setState({ username: e.target.value, emptyUsername: false })}
-              placeholder="Username"
-            />
-            <div>{emptyUsername ? "Cannot be blank": ""} </div>
-          </div>
-          <div className="flexbox-container">
-            <input
-              type="text"
-              onChange={(e) => this.setState({ password: e.target.value, emptyPassword: false })}
-              placeholder="Password"
-            />
-            <div>{emptyPassword ? "Cannot be blank": ""} </div>
-          </div>
-          <div style={{ padding: '10px' }}>
-            <button
-              onClick={() =>
-                this.login()
-              }
-            >
-              Log In
-            </button>
-            <Link to="/CreateAccount">Create Account</Link>
-          </div>
-        </div>
-      </div>
+      <Entry title="Sign In" buttonPress={this.login} linkUrl="/CreateAccount" linkTitle="Create Account" />
     );
   }
 }

@@ -11,22 +11,25 @@ class VideoPage extends Component {
 
     render() {
         return (
-            <div class="container">
-                <div class="inner">
-                <div>
-                    {this.props.videos.map((item) => 
-                        <div>
-                            <h3>{item.title}</h3>
-                            <Video videoId={item.videoId} />
-                        </div>
-                    )}
-                </div>
+            <div>
                 <div class="sidebar">
-                    <Sidebar />
-                </div>
+                        <Sidebar />
+                    </div>
+                <div class="container">
+                <div class="inner">
+                    <div>
+                        {this.props.videos.map((item) => 
+                            <div class="video">
+                                <h3>{item.title}</h3>
+                                <Video videoId={item.videoId} />
+                            </div>
+                        )}
+                    </div>
+                    
+                </div>   
             </div>
-                
             </div>
+            
             
             
             
