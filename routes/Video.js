@@ -23,7 +23,7 @@ class Video {
         });
     }
 
-    searchYoutube = () => {
+    searchYoutube() {
         let q = "full game highlights";
         const api = new YoutubeDataAPI(process.env.API_KEY);
         let videos = [];
@@ -50,12 +50,12 @@ class Video {
         })
     }
 
-    getAllVideos = async () => {
+    async getAllVideos(){
         const videos = await Videos.find({}).sort({date: -1});
         return new Response(videos.slice(0,10), '', 200);
     }
     
-    getTeamVideos = async (teamName) => {
+    async getTeamVideos(teamName) {
         const videos = await Videos.find({}).sort({date: -1});
         const ret = [];
         videos.map((video) => {

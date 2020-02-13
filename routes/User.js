@@ -21,7 +21,7 @@ class User {
         });
     }
 
-    checkEmpty = (credentials) => {
+    checkEmpty(credentials) {
         let emptyField = {
             username: false,
             password: false
@@ -35,7 +35,7 @@ class User {
         return new Response(emptyField, 'Empty Field', 400);
     }
 
-    createUser = async (credentials) => {
+    async createUser(credentials) {
         if (!credentials || !credentials.username || !credentials.password) {
             return this.checkEmpty(credentials);
         }
@@ -47,7 +47,7 @@ class User {
         }
     }
 
-    checkLogin = async (credentials) => {
+    async checkLogin(credentials) {
         if (!credentials || !credentials.username || !credentials.password) {
             return this.checkEmpty(credentials);
         }
@@ -65,7 +65,7 @@ class User {
         }        
     }
 
-    getUsername = async (userId) => {
+    async getUsername(userId) {
         try {
             const response = await Users.findById(userId);
             return new Response(response.username, 'Empty Field', 200);
