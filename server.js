@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 var cors = require('cors');
 const path = require('path')
+const wakeDyno = require('woke-dyno');
 
 // const { mongoLink } = require('./credentials');
 const Video = require('./routes/Video');
@@ -41,4 +42,12 @@ app.get("*", (req, res) => {
 });
 
 // launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(API_PORT, () => {
+    console.log(`LISTENING ON PORT ${API_PORT}`)
+    wakeDyno({
+        url: "https://nba-recap.herokuapp.com",
+        interval: 25 * 60000,
+        startNap: [8, 0, 0, 0],
+        endNap: [16, 0, 0, 0]
+    }).start(); 
+});
