@@ -44,10 +44,11 @@ app.get("*", (req, res) => {
 // launch our backend into a port
 app.listen(API_PORT, () => {
     console.log(`LISTENING ON PORT ${API_PORT}`)
-    wakeDyno({
-        url: "https://nba-recap.herokuapp.com",
-        interval: 25 * 60000,
-        startNap: [8, 0, 0, 0],
-        endNap: [16, 0, 0, 0]
-    }).start(); 
+    wakeDyno("https://nba-recap.herokuapp.com").start();
+    // wakeDyno({
+    //     url: "https://nba-recap.herokuapp.com",  // url string
+    //     interval: 25 * 60000, // interval in milliseconds (1 minute in this example)
+    //     startNap: [8, 0, 0, 0], // the time to start nap in UTC, as [h, m, s, ms] (05:00 UTC in this example)
+    //     endNap: [, 0, 0, 0] // time to wake up again, in UTC (09:59:59.999 in this example)
+    // }).start(); 
 });
