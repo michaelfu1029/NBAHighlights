@@ -14,9 +14,9 @@ import {
 const App = (
   <Router>
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/Login" component={Login} />
-        <Route path="/CreateAccount" component={CreateAccount} />
+        <Route exact path="/" component={Home} />
+        {/* <Route path="/Login" component={Login} /> */}
+        {/* <Route path="/CreateAccount" component={CreateAccount} /> */}
         <Route path="/Home" component={Home} />
         <Route path="/Teams/:page" component={TeamPage} />
       </Switch>

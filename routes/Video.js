@@ -29,12 +29,14 @@ class Video {
         let videos = [];
  
         api.searchAll(q, 50, {
+            // NBA official channel
             channelId: 'UCWJ2lWNubArHWmf3FIHbfcQ',
             order: 'date'
         }).then((data) => {
             data.items.forEach(item => {
                 const title = item.snippet.title;
                 if (title.includes("FULL GAME HIGHLIGHTS")){
+                    // Parse the date of the video from the title
                     const dateIndex = title.search("(?<=\| )[^\|]*$");
                     const date = new Date(title.slice(dateIndex))
                     videos.push({"title": item.snippet.title, "videoId": item.id.videoId, "date": date});
